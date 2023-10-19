@@ -1,0 +1,1 @@
+Userscript that fixes link to open in VSCode instead of "Visual Studio"
