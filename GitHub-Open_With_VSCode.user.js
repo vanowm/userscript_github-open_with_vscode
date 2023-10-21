@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Github - Open with VSCode
 // @namespace    V@no
-// @description  Fixes "Open with Visual Studio" button on GitHub to open with VSCode instead of Visual Studio
+// @description  Fixes "Open with Visual Studio" button to open with VSCode instead
 // @match        https://github.com/*
-// @version      23.10.21-010416
+// @version      23.10.21-011323
 // @license      MIT
 // @run-at       document-end
 // @grant        none
@@ -25,7 +25,8 @@
 		if (!elLink)
 			return true;
 
-		elLink.dataset.openApp = "vscode"; // display "Launching Visual Studio Code..." message
+		// display "Launching Visual Studio Code..." message
+		elLink.dataset.openApp = "vscode";
 		elLink.innerHTML += " Code";
 		const cloneURL = (document.querySelector(".input-group > .form-control") || {}).value;
 		if (cloneURL)
@@ -33,7 +34,7 @@
 		else
 			elLink.href = elLink.href.replace("git-client://", "vscode://vscode.git/");
 
-		//we don't need keep observing DOM changes
+		//we don't need keep observing DOM changes anymore
 		observer.disconnect();
 	};
 
