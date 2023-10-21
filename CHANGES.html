@@ -1,0 +1,276 @@
+<style type="text/css">:root,body
+{
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+:root
+{
+    position: relative;
+    max-width: 77ch;
+    padding: 32px;
+    margin: auto;
+    font-family: "Segoe WPC", "Segoe UI", sans-serif;
+}
+
+body
+{
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+fixed::before,
+changed::before,
+removed::before,
+added::before,
+unknown::before
+{
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    font-family: monospace;
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1em;
+    vertical-align: middle;
+}
+
+fixed::before
+{
+    color: orange;
+    content: "! ";
+}
+
+changed::before
+{
+    height: 1em;
+    color: lightblue;
+    content: "* ";
+    line-height: 1.2em;
+}
+
+removed::before
+{
+    color: red;
+    content: "- ";
+}
+
+added::before
+{
+    color: green;
+    content: "+ ";
+}
+
+unknown::before
+{
+    color: grey;
+    content: "? ";
+    opacity: 0.5;
+
+}
+
+comment
+{
+    display: inline-block;
+    margin-left: 1em;
+    font-style: italic;
+    opacity: 0.5;
+}
+
+date
+{
+    display: inline-block;
+    height: 1.2em;
+    color: grey;
+    font-size: 0.8em;
+    font-style: italic;
+    line-height: 1em;
+    opacity: 0.8;
+    vertical-align: middle;
+}
+
+ul
+{
+    margin-top: 0;
+    margin-left: 1em;
+}
+
+li
+{
+    list-style: none
+}
+
+p
+{
+    margin-top: 0;
+    margin-bottom: 0 !important;
+}
+
+h1:first-of-type
+{
+    margin-top: 0 !important;
+}
+
+summary
+{
+    padding: 1em;
+    color: grey;
+}
+
+.legend
+{
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    margin-top: -2.3em;
+    margin-right: 0;
+    float: right;
+}
+
+details
+{
+    position: absolute;
+    top: 0.2em;
+    right: 0.2em;
+    overflow: hidden;
+    width: 7.5em;
+    margin-top: 1px;
+    margin-right: 1px;
+    font-size: 0.8em;
+
+    /* padding: 1em; */
+    line-height: 1em;
+    opacity: 0.4;
+    transition: opacity var(--transition),
+        height var(--transition),
+        border var(--transition);
+    -webkit-user-select: none;
+    user-select: none;
+
+    --transition: 0.2s ease-in-out;
+}
+
+details[open],
+details:hover
+{
+    z-index: 1;
+    height: 3em;
+    background-color: var(--bgColor-default, var(--color-canvas-default));
+    opacity: 1;
+}
+
+details:not([open]) > *
+{
+    margin: 0;
+}
+
+details > *:last-child
+{
+    margin: 1em;
+    margin-top: 0;
+}
+
+details[open]
+{
+    height: 9em;
+    border: 1px solid var(--borderColor-muted, var(--color-border-muted));
+    margin-top: 0;
+    margin-right: 0;
+}
+
+details > summary
+{
+    text-align: center;
+}
+
+details>div
+{
+    line-height: 1.2em;
+}
+
+details>div>*::before
+{
+    margin-left: 0;
+}
+</style>
+<div class="legend"><details><summary>Legend</summary><div><added></added>Added<br><changed></changed>Changed<br><fixed></fixed>Fixed<br><removed></removed>Removed</div></details></div>
+<h1 id="changeslog">Changes Log</h1>
+<p><strong><a href="https://github.com/vanowm/userscript_github-open_with_vscode/commit/05cf090">23.10.21-135539</a></strong> <date>(2023-10-21 14:00:46)</date></p>
+<ul>
+<li><added title="Added">icons</added></li>
+<li><added title="Added">VSCode button</added></li>
+<li><changed title="Changed">Visual Studio button no longer replaced</changed></li>
+</ul>
+<p><strong><a href="https://github.com/vanowm/userscript_github-open_with_vscode/commit/f4c2910">23.10.21-011323</a></strong> <date>(2023-10-21 01:13:34)</date></p>
+<ul>
+<li><added title="Added">comments</added></li>
+</ul>
+<p><strong><a href="https://github.com/vanowm/userscript_github-open_with_vscode/commit/138d1b9">23.10.21-010416</a></strong> <date>(2023-10-19 23:38:16)</date></p>
+<ul>
+<li><added title="Added">Initial commit</added></li>
+</ul>
+<style type="text/css">:root
+{
+    --color-accent-fg: #2f81f7;
+    --color-border-muted: #21262d;
+    --color-canvas-default: #0d1117;
+    --color-neutral-muted: rgb(110 118 129 / 40%);
+
+    font-size: 12.3px;
+}
+
+a
+{
+    background-color: transparent;
+    color: var(--fgColor-accent, var(--color-accent-fg));
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+h1
+{
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+    margin: 0.67em 0;
+    font-size: 2em;
+    font-weight: var(--base-text-weight-semibold, 600);
+    line-height: 1.25;
+}
+
+summary
+{
+    cursor: pointer;
+}
+
+strong
+{
+    font-weight: var(--base-text-weight-semibold, 600);
+}
+
+code
+{
+    padding: 0.2em 0.4em;
+    border-radius: 6px;
+    margin: 0;
+    background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted));
+    font-family: ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    font-size: 85%;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+@media (prefers-color-scheme: dark)
+{
+    body
+    {
+        background: var(--color-canvas-default);
+        color: #e6edf3;
+    }
+}
+</style>
