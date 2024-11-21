@@ -3,7 +3,7 @@
 // @namespace    V@no
 // @description  Adds "Open with VSCode" button
 // @match        https://github.com/*
-// @version      24.5.9-085044
+// @version      24.11.21-163657
 // @license      MIT
 // @run-at       document-end
 // @grant        none
@@ -14,7 +14,7 @@
 	"use strict";
 	const fixLink = () =>
 	{
-		const elUL = document.querySelector(`#__primerPortalRoot__ > div > div > div > ul > div > ul`);
+		const elUL = document.querySelector(`#__primerPortalRoot__ > div > div > ul > div > ul`);
 		if (!elUL)
 			return true;
 
