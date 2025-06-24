@@ -3,7 +3,7 @@
 // @namespace    V@no
 // @description  Adds "Open with VSCode" button
 // @match        https://github.com/*
-// @version      24.11.21-163657
+// @version      25.6.24-000643
 // @license      MIT
 // @run-at       document-end
 // @grant        none
@@ -14,39 +14,43 @@
 	"use strict";
 	const fixLink = () =>
 	{
-		const elUL = document.querySelector(`#__primerPortalRoot__ > div > div > ul > div > ul`);
+		if (document.getElementById("vscode"))
+			return;
+
+		const elUL = document.querySelector(`#__primerPortalRoot__ > div > div > div.react-overview-code-button-action-list > div > ul`);
 		if (!elUL)
 			return true;
 
-		const elLiVStudio = elUL.querySelector(`[id]:nth-child(2)`);
-		if (elLiVStudio && !elLiVStudio.querySelector(".icon"))
+		const elLi_DownloadZip = elUL.querySelector(`li:last-child`);
+		const elLi_VSCode = elLi_DownloadZip.cloneNode(true);
+		elLi_VSCode.id = "vscode";
+		elLi_VSCode.classList.add("vscode");
+		const elA_VSCode = elLi_VSCode.querySelector("a");
+		elA_VSCode.lastChild.firstChild.textContent = "Open with VSCode";
+		const elImg_Vscode = document.createElement("img");
+		elImg_Vscode.classList.add("icon");
+		elImg_Vscode.src = "https://raw.githubusercontent.com/vanowm/userscript_github-open_with_vscode/master/media/vscode.svg";
+		const elSvg = elA_VSCode.querySelector("svg");
+		elSvg.parentNode.replaceChild(elImg_Vscode, elSvg);
+
+		const cloneURL = (elUL.parentNode.querySelector(`input`) || {}).value
+						|| location.origin + location.pathname + ".git";
+		elA_VSCode.href = "vscode://vscode.git/clone?url=" + encodeURI(cloneURL);
+
+		elLi_DownloadZip.parentNode.insertBefore(elLi_VSCode, elLi_DownloadZip);
+
+		/* ---------------------------- Visual Studio ---------------------------- */
+		const elLiVStudio = elUL.querySelector(`li.${elLi_VSCode.classList.item(0)}:nth-child(2)>button`);
+		if (elLiVStudio)
 		{
 			const elImg_Vstudio = document.createElement("img");
-			elImg_Vstudio.classList.add("mr-2", "icon");
+			elImg_Vstudio.classList.add("icon");
 			elImg_Vstudio.src = "https://raw.githubusercontent.com/vanowm/userscript_github-open_with_vscode/master/media/vstudio.svg";
 			elLiVStudio.prepend(elImg_Vstudio);
-		}
-		const elLi_DownloadZip = elUL.querySelector(`li:last-child`);
-		const elLi_VSCode = (elUL.querySelector(".vscode") || elLi_DownloadZip.cloneNode(true));
-		if (!elLi_VSCode.parentNode)
-		{
-			elLi_VSCode.classList.add("vscode");
-			const elA_VSCode = elLi_VSCode.querySelector("a");
-			elA_VSCode.textContent = "Open with VSCode";
-			const elImg_Vscode = document.createElement("img");
-			elImg_Vscode.classList.add("mr-2", "icon");
-			elImg_Vscode.src = "https://raw.githubusercontent.com/vanowm/userscript_github-open_with_vscode/master/media/vscode.svg";
-			elA_VSCode.prepend(elImg_Vscode);
-
-			const cloneURL = (elUL.parentNode.querySelector(`input`) || {}).value
-							|| location.origin + location.pathname + ".git";
-			elA_VSCode.href = "vscode://vscode.git/clone?url=" + encodeURI(cloneURL);
-
-			elLi_DownloadZip.parentNode.insertBefore(elLi_VSCode, elLi_DownloadZip);
 		}
 	};
 
 	const observer = new MutationObserver(fixLink);
-	fixLink();
 	observer.observe(document, {childList: true, subtree: true});
+	fixLink();
 })();
